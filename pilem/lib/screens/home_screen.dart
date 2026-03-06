@@ -34,7 +34,68 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _loadMovies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: Text("Pilem")),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildMovieList("All Movies", _allMovies),
+            _buildMovieList("Trending Movies", _trendingMovies),
+            _buildMovieList("Popular Movies", _popularMovies),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMovieList(String title, List<Movie> movies) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            title,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+        SizedBox(
+          height: 200,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: movies.length,
+            itemBuilder: (BuildContext context, int index) {
+              final Movie movie = movies[index];
+              return Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Image.network(
+                      'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                      height: 150,
+                      width: 100,
+                      fit: BoxFit.cover,
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      movie.title,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
   }
 }

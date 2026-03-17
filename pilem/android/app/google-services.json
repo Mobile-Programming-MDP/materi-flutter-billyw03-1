@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "194223666212",
+    "project_id": "my-first-project-8848e",
+    "storage_bucket": "my-first-project-8848e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194223666212:android:1c09bf4a9d2b94386b94b1",
+        "android_client_info": {
+          "package_name": "com.example.pilem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfzi_8sO7xaSTjlwIR5a_rY3HtXMYQuqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

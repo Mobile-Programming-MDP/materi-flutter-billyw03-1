@@ -19,6 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  String generateAvatarUrl(String? fullName) {
+    final formattedName = fullName?.trim().replaceAll('', '+');
+    return 'https://ui-avatars.com/api/?name=$formattedName&background=random';
+  }
+
   String? _idToken = "";
   String? _uid = "";
   String? _email = "";
@@ -62,6 +67,19 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Column(
           children: [
+            Image.network(
+              generateAvatarUrl(
+                FirebaseAuth.instance.currentUser?.displayName!,
+              ),
+              width: 120,
+              height: 120,
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              FirebaseAuth.instance.currentUser!.displayName!,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+
             Text("Your have been signed in with ID Token: $_idToken"),
             Text("current User: $_uid"),
             Text("Current Email: $_email"),

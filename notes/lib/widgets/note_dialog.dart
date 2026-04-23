@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/services/note_service.dart';
+import 'package:geolocator/geolocator.dart';
 
 class NoteDialog extends StatefulWidget {
   final Note? note;
@@ -17,6 +18,8 @@ class _NoteDialogState extends State<NoteDialog> {
   final TextEditingController _descriptionController = TextEditingController();
   File? _imageFile;
   String? _base64Image;
+  String? _latitude;
+  String? _longitude;
 
   @override
   void initState() {
@@ -44,6 +47,40 @@ class _NoteDialogState extends State<NoteDialog> {
     } else {
       print("No image selected.");
     }
+  }
+
+  Future<void> _getLocation() async {
+    try {
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Layanan lokasi dinonaktifkan.")),
+        );
+        return;
+      }
+
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.deniedForever ||
+            permission == LocationPermission.denied) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text("Izin lokasi ditolak.")));
+          return;
+        }
+      }
+
+      final position = await Geolocator.getCurrentPosition(
+        locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
+        timeLimit: Duration(seconds: 10),
+      );
+
+      setState(() {
+        _latitude = position.latitude.toString();
+        _longitude = position.longitude.toString();
+      });
+    } catch (e) {}
   }
 
   @override

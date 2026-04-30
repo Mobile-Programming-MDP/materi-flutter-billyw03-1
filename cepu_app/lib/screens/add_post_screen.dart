@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:cepu_app/models/post.dart';
-import 'package:cepu_app/services/post_services.dart';
+import 'package:cepu_app/services/post_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';

@@ -17,7 +17,7 @@ class PostService {
       'created_at': FieldValue.serverTimestamp(),
       'updated_at': FieldValue.serverTimestamp(),
       'user_id': post.userId,
-      'user_full_name': post.userFullname,
+      'user_full_name': post.userFullName,
     };
     await _postsCollection.add(newPost);
   }
@@ -32,7 +32,7 @@ class PostService {
       'created_at': post.createdAt,
       'updated_at': FieldValue.serverTimestamp(),
       'user_id': post.userId,
-      'user_full_name': post.userFullname,
+      'user_full_name': post.userFullName,
     };
 
     await _postsCollection.doc(post.id).update(updatedPost);

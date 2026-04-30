@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Post {
-  int? id;
+  String? id;
   String? image;
   String? description;
   String? category;
-  double? latitude;
-  double? longitude;
+  String? latitude;
+  String? longitude;
   Timestamp? createdAt;
   Timestamp? updatedAt;
-  int? userId;
-  String? userFullname;
+  String? userId;
+  String? userFullName;
 
   Post({
     this.id,
@@ -22,7 +22,7 @@ class Post {
     this.createdAt,
     this.updatedAt,
     this.userId,
-    this.userFullname,
+    this.userFullName,
   });
 
   factory Post.fromDocument(DocumentSnapshot doc) {

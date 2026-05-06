@@ -1,10 +1,10 @@
 import 'dart:convert';
-
 import 'package:cepu_app/models/post.dart';
 import 'package:cepu_app/services/post_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:cepu_app/screens/map_detail_screen.dart';
 
 class DetailScreen extends StatelessWidget {
   final Post post;
@@ -116,6 +116,19 @@ class DetailScreen extends StatelessWidget {
                           style: const TextStyle(color: Colors.grey),
                         ),
                       ],
+                    ),
+                    const SizedBox(height: 12),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => MapDetailScreen(post: post),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.map),
+                      label: const Text('View on Map'),
                     ),
                   ],
                 ],

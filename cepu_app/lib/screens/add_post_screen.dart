@@ -19,6 +19,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   String? _latitude;
   String? _longitude;
   String? _category;
+  bool _isGenerating = false;
   bool _isSubmitting = false;
   bool _isGettingLocation = false;
   List<String> get categories {
@@ -223,6 +224,19 @@ class _AddPostScreenState extends State<AddPostScreen> {
     _descriptionController.dispose();
     super.dispose();
   }
+  //7. Fungsi generate description otomatis berdasarkan gambar
+  // Panggil fungsi ini setelah gambar dipilih
+  Future<void> _generateDescriptionWithAI() async {
+    if (_base64Image == null) return;
+    setState(() => _isGenerating = true);
+    try {
+      const apiKey = '';
+      const apiUrl = '';
+      final body = 
+    };
+
+  }
+
 
   @override
   Widget build(BuildContext context) {

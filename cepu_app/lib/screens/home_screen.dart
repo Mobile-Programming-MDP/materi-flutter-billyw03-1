@@ -14,17 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String? selectedCategory;
-  List<String> get categories {
-    return [
-      'Jalan Rusak',
-      'Lampu Jalan Mati',
-      'Lawan Arah',
-      'Merokok di Jalan',
-      'Tidak Pakai Helm',
-    ];
-  }
-
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
     if (!mounted) return;
@@ -39,6 +28,18 @@ class _HomeScreenState extends State<HomeScreen> {
   String generateAvatarUrl(String? fullName) {
     final formattedName = fullName!.trim().replaceAll(' ', '+');
     return 'https://ui-avatars.com/api/?name=$formattedName&color=FFFFFF&background=000000';
+  }
+
+  //1. Create variable untuk menyimpan kategori
+  String? selectedCategory;
+  List<String> get categories {
+    return [
+      'Jalan Rusak',
+      'Lampu Jalan Mati',
+      'Lawan Arah',
+      'Merokok di Jalan',
+      'Tidak Pakai Helm',
+    ];
   }
 
   void _showCategoryFilter() async {
